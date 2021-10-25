@@ -26,8 +26,12 @@ let isMount = useIsMount();
 
 
   const handleContextResumeClick = () => {
-    if (isMount){resumeContext()}
-    else {}
+    if (isMount){
+      console.log("first render");
+      resumeContext();
+    }
+      
+    else {console.log("subsequent renders");}
 
     
   };

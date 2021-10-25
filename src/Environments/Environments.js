@@ -19,19 +19,19 @@ const envNames = [
 ];
 
 
-const Environments = () => {
+const Environments = ({urlPath}) => {
   
 
   return (
     <Router>
       <div className="environments">
-        <SideBar />
+        <SideBar basePath={urlPath}/>
 
         <Switch>
           {envNamesPath.map((environment, index) => {
             let address;
-            if (environment === "custom") {address='/'}
-            else {address=`/${environment}`}
+            if (environment === "custom") {address=urlPath}
+            else {address=`${urlPath}/${environment}`}
 
       
             return (
