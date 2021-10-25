@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
 import Environments from "../../Environments/Environments";
+import { useState } from "react";
 
 
 
@@ -14,6 +15,8 @@ function App() {
 
   
 
+  
+
   return (
     <Router>
       <div className="App">
@@ -21,7 +24,7 @@ function App() {
         <div className="content">
           <Switch>
             <Route path="/euclidean-sequencer">
-              <Environments urlPath={basePath}/>
+              <Environments urlPath={basePath} />
             </Route>
 
             <Route path="*">

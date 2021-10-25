@@ -7,7 +7,6 @@ import MacroControls from "./MacroControls/MacroControls";
 import EuclideanLineControlsList from "./EuclideanLineControls/EuclideanLineControlsList";
 import PlayButton from "./TransportControls/PlayButton";
 import StopButton from "./TransportControls/StopButton";
-import api from "./../../api/userUnitList"
 import SaveButton from "./../SequencerElements/SaveButton"
 import LoadDropDown from "./LoadDropDown";
 import defaultUnits from "../../Default/defaultUnits";
@@ -17,7 +16,7 @@ defaultUnits[environment].traditional
 ).flat().sort((a, b) => {return a.numSteps - b.numSteps});
 
 
-const EuclideanSequencer = () => {
+const EuclideanSequencer = ({userPresets, setUserPresets}) => {
   const {
     unitList,
     setUnitList,
@@ -34,20 +33,17 @@ const EuclideanSequencer = () => {
   } = useContext(EnvironmentContext);
 
   
-  const retrieveUnitxList = async () => {  // function that returns the response object from the db.json where we save the user pattern
-    const response = await api.get("/userUnitList");
-    return response.data;
-  }
+  
 
 
 
 
 
-  useEffect(() => { // on first render we retrieve the user UnitList from thedb.json
+  useEffect(() => { // on first render we retrieve the user UnitList from the db.json
     Transport.stop();
     
-    const getAllUserUnitList = async () => {
-      const allUserUnitList = await retrieveUnitxList();
+    const getAllUserUnitList =  () => {
+      const allUserUnitList = userPresets;
       if (allUserUnitList) setUserList(allUserUnitList)
       return allUserUnitList;
     }
@@ -55,7 +51,7 @@ const EuclideanSequencer = () => {
 
   }, []);
 
-  const [userList, setUserList] = useState(null); 
+  const [userList, setUserList] = useState(userPresets); 
 
 
 
@@ -112,13 +108,13 @@ const EuclideanSequencer = () => {
         />
         <PlayButton sequencesList={sequencesList} dummy={dummy}
           setDummy={setDummy}/>
-        <SaveButton currentUnitList={unitList} userList={userList} setUserList={setUserList} tempo={tempo} setTempo = {setTempo}/>
+        <SaveButton currentUnitList={unitList} userList={userPresets} setUserList={setUserPresets} tempo={tempo} setTempo = {setTempo}/>
         </div>
         <h2 id="macroControls">Macro Controls</h2>
         <MacroControls color={macroColor} />
       </div>
 
-      <LoadDropDown className="LoadDropDown" userList={userList} setUnitList={setUnitList} setTempo = {setTempo}/> 
+      <LoadDropDown className="LoadDropDown" userList={userPresets} setUnitList={setUserPresets} setTempo = {setTempo}/> 
 
 
       <EuclideanLineControlsList

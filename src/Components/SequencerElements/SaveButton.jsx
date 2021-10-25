@@ -1,13 +1,13 @@
-import api from "../../api/userUnitList";
+
 
 const SaveButton = ({ currentUnitList, userList, setUserList, tempo }) => {
   const saveUnitList = async () => {
     const request = { unitList: currentUnitList, tempo: tempo };
-    const response = await api.post("/userUnitList", request);
+    
 
     if (!userList) {
-      setUserList(response.data);
-    } else setUserList([...userList, response.data]);
+      setUserList(request);
+    } else setUserList([...userList, request]);
   };
 
   return (

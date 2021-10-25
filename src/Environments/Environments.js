@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SideBar from "../Components/PageBasicComponents/SideBar";
 import Environment from "./Environment";
@@ -21,7 +22,8 @@ const envNames = [
 
 const Environments = ({urlPath}) => {
   
-
+  const [userPresets, setUserPresets] = useState([]);
+  
   return (
     <Router>
       <div className="environments">
@@ -37,6 +39,8 @@ const Environments = ({urlPath}) => {
             return (
               <Route exact path={address} key={index}>
                 <Environment
+                  userPresets= {userPresets} 
+                  setUserPresets={setUserPresets}
                   envName={envNames[index]}
                   num={index}
                   envNamePath={environment}
