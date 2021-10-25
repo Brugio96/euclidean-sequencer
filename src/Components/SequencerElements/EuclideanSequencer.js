@@ -39,19 +39,19 @@ const EuclideanSequencer = ({userPresets, setUserPresets}) => {
 
 
 
-  useEffect(() => { // on first render we retrieve the user UnitList from the db.json
+  useEffect(() => { 
     Transport.stop();
     
-    const getAllUserUnitList =  () => {
-      const allUserUnitList = userPresets;
-      if (allUserUnitList) setUserList(allUserUnitList)
-      return allUserUnitList;
+    const getAllUserPresets =  () => {
+      const allUserPresets = userPresets;
+      if (allUserPresets) setUserPresets(allUserPresets)
+      return allUserPresets;
     }
-    getAllUserUnitList();
+    getAllUserPresets();
 
   }, []);
 
-  const [userList, setUserList] = useState(userPresets); 
+  
 
 
 
@@ -108,13 +108,13 @@ const EuclideanSequencer = ({userPresets, setUserPresets}) => {
         />
         <PlayButton sequencesList={sequencesList} dummy={dummy}
           setDummy={setDummy}/>
-        <SaveButton currentUnitList={unitList} userList={userPresets} setUserList={setUserPresets} tempo={tempo} setTempo = {setTempo}/>
+        <SaveButton currentUnitList={unitList} userPresets={userPresets} setUserPresets={setUserPresets} tempo={tempo} setTempo = {setTempo}/>
         </div>
         <h2 id="macroControls">Macro Controls</h2>
         <MacroControls color={macroColor} />
       </div>
 
-      <LoadDropDown className="LoadDropDown" userList={userPresets} setUnitList={setUserPresets} setTempo = {setTempo}/> 
+      <LoadDropDown className="LoadDropDown" userPresets={userPresets} setUnitList={setUnitList} setTempo = {setTempo}/> 
 
 
       <EuclideanLineControlsList
