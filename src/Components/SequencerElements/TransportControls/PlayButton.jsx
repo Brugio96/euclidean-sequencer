@@ -13,7 +13,7 @@ let isMount = useIsMount();
     await Tone.start();
     Tone.Transport.stop();
 
-    sequencesList.forEach((seq, index) => {
+    sequencesList.forEach((seq) => {
       seq.stop();
     });
     
@@ -27,11 +27,10 @@ let isMount = useIsMount();
 
   const handleContextResumeClick = () => {
     if (isMount){
-      console.log("first render");
       resumeContext();
     }
       
-    else {console.log("subsequent renders");}
+    else {}
 
     
   };

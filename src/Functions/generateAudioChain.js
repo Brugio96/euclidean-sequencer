@@ -9,10 +9,6 @@ export const generateAudioChain = (url, pan, volume) => {
     let sampler = new Sampler({
         urls: {
             A1: `${url}`
-        },
-
-        onload: () => {
-            console.log("LOADED");
         }
 
     });
